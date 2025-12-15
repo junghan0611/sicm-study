@@ -23,3 +23,7 @@ target/
 Thumbs.db
 
 emmy
+.agent-shell/
+reference
+.claude/settings.local.json
+
