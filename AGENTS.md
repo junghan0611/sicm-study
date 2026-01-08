@@ -86,6 +86,67 @@ sicm-study/
 └── tools/scheme/        # MIT Scheme 설정
 ```
 
+## 학습 전략 (Grabo 스타일)
+
+> **핵심 참조**: `LEARNING_FRAMEWORK.org` - Fritz Grabo의 "책+코드 대화형 학습" 적용
+
+### 🎯 One-Item-at-a-Time Rule (최중요)
+
+```
+한 번에 하나의 개념만 깊이 탐구한다.
+```
+
+**절차**:
+1. 사용자가 챕터/주제 요청 시 → 3-7개 핵심 개념으로 분해
+2. 선택 요청 (번호, "all", "skip")
+3. 선택된 항목만: 개념 설명 → 책 인용 → 코드 연결 → Emmy 예제
+4. `bd update` 로 진행 기록
+5. 다음 항목 진행 전 확인
+
+### 🔗 Code-to-Concept Connection
+
+코드 예시는 반드시:
+- **파일 경로:라인** 명시 (예: `sicm/reference/chapter1/ex1-5.scm:23`)
+- **5-10줄 컨텍스트** + 라인별 설명
+- **SICM 책 수식과 명시적 연결**
+
+```scheme
+;; sicm/reference/chapter1/lagrangian-demo.scm:15-20
+(define ((L-free-particle mass) local)
+  (let ((v (velocity local)))
+    (* 1/2 mass (dot-product v v))))
+
+;; → 책 p.14 식 (1.8): L(t,q,v) = (1/2)mv²
+;; 함수형 표기: L은 "local tuple을 받는 함수를 반환하는 함수"
+```
+
+### 📋 세션 워크플로우
+
+```bash
+# 1. 세션 시작
+bd ready --json              # 작업 가능 이슈 확인
+
+# 2. 학습 중
+bd update <id> --status in_progress
+bd update <id> --notes "학습 노트 누적"
+
+# 3. 새 이슈 발견 (배경 지식 부족 등)
+bd create "제목" -t task --deps discovered-from:<current-id>
+
+# 4. 세션 종료
+bd close <id> --reason "완료"
+bd sync
+```
+
+### 🗣️ 커뮤니케이션 스타일
+
+- **전문 용어 자유롭게**: 함수형, 수학 배경 전제
+- **산문체 설명**: 글머리 기호보다 연결된 설명
+- **기하학적 직관 우선**: 수식 전에 "궤도가 어떻게 움직이는가"
+- **철학적 맥락**: 필요시 심우십도 단계 연결
+
+---
+
 ## 에이전트 역할
 
 ### 학습 도우미로서
