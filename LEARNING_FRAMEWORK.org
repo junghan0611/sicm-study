@@ -1,0 +1,213 @@
+#+TITLE: SICM Learning Framework - Grabo 스타일 적용
+#+AUTHOR: sicm-study
+#+DATE: 2026-01-08
+
+* Overview
+
+Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
+진행 추적은 ~bd (beads)~ 로 관리.
+
+** 핵심 구조
+
+| 파일/디렉토리              | 역할                          | Grabo 대응        |
+|----------------------------+-------------------------------+-------------------|
+| ~sicm/book/chapter*.org~   | 이론 (SICM 원서)              | ~book.txt~        |
+| ~sicm/reference/~          | 실제 코드 (Sam Ritchie 풀이)  | Fizzy source      |
+| ~.beads/~                  | 진행 추적 (bd 이슈)           | ~outline.org~     |
+| ~LEARNING_FRAMEWORK.org~   | 에이전트 지침                 | ~instructions.org~ |
+
+** Grabo vs sicm-study 차이점
+
+| 측면                | Grabo                           | sicm-study                        |
+|---------------------+---------------------------------+-----------------------------------|
+| 진행 추적           | outline.org (TODO/DONE/SKIP)    | bd issues (status + deps)         |
+| 내용                | Rails 8 (실용적 프레임워크)     | SICM (수리물리학, 철학적 여정)    |
+| 학습 목표           | 프레임워크 마스터               | 자연철학 이해 (심우십도)          |
+| 코드 검증           | 프로덕션 코드 참조              | Scheme 실행 + Emmy REPL           |
+
+* 에이전트 지침
+
+** 1. One-Item-at-a-Time Rule
+
+#+begin_quote
+한 번에 하나의 개념만 깊이 탐구한다.
+#+end_quote
+
+사용자가 "Chapter 1 전체 설명해줘"라고 해도:
+1. 챕터를 3-7개 핵심 개념으로 분해
+2. 사용자에게 선택 요청 (번호, "all", "skip")
+3. 선택된 항목만 다음 순서로:
+   - 개념 설명 (물리적/기하학적 직관)
+   - ~book/chapter*.org~ 에서 관련 부분 인용
+   - ~reference/~ 에서 실제 Scheme 코드 연결
+   - 필요시 Emmy 예제 제시
+4. bd 이슈 업데이트 (완료 또는 후속 이슈 생성)
+5. 다음 항목 진행 전 확인
+
+** 2. Code-to-Concept Connection
+
+코드 예시는 반드시:
+- 파일 경로:라인 번호 명시 (예: ~sicm/reference/chapter1/ex1-5.scm:23~)
+- 5-10줄 컨텍스트
+- 라인별 설명 (특히 함수형 표기법의 의미)
+- SICM 책 수식과의 명시적 연결
+
+예:
+#+begin_example
+;; sicm/reference/chapter1/lagrangian-demo.scm:15-20
+(define ((L-free-particle mass) local)
+  (let ((v (velocity local)))
+    (* 1/2 mass (dot-product v v))))
+
+→ 책 p.14 식 (1.8): L(t,q,v) = (1/2)mv²
+  함수형 표기: L은 "local tuple을 받는 함수를 반환하는 함수"
+#+end_example
+
+** 3. Session Startup Workflow
+
+세션 시작 시:
+1. ~bd ready --json~ 으로 작업 가능 이슈 확인
+2. 사용자에게 진행 상황 요약 제시
+3. 선택지:
+   - 특정 이슈 계속 (#id)
+   - 새 주제 시작
+   - 개념 질문
+
+** 4. Content Delivery Sequence
+
+#+begin_src
+[사용자: "Chapter 1.4 배우고 싶어"]
+
+1. 에이전트: sicm/book/chapter001.org 읽기
+2. 3-7 핵심 개념 추출:
+   1) 최소작용 원리
+   2) 오일러-라그랑주 방정식 유도
+   3) 계산적 접근 (variational calculus)
+   ...
+3. "어떤 걸 먼저 볼까요? (번호 or 'all')"
+4. [사용자: "1"]
+5. 개념 설명 + 코드 연결
+6. bd update <issue-id> --notes "최소작용 원리 완료, reference/chapter1/action.scm 확인"
+7. "다음 항목 (2)로 갈까요?"
+#+end_src
+
+** 5. Progress Tracking with bd
+
+*** 이슈 구조 예시
+
+#+begin_example
+# 챕터 학습 milestone
+bd create "Chapter 1: Lagrangian Mechanics" -t feature -p 2
+
+# 세부 개념 tasks
+bd create "1.1 Configuration Spaces 이해" -t task -p 1 --deps blocks:<parent-id>
+bd create "Exercise 1.5 풀기" -t task -p 2 --deps blocks:<parent-id>
+bd create "변분법 기초 부족 → foundations/ 정리" -t task -p 3 --deps discovered-from:<ex1-5-id>
+#+end_example
+
+*** 노트 누적 방식
+
+Grabo의 outline.org처럼, bd 이슈에 학습 노트 누적:
+#+begin_example
+bd update <id> --notes "Lagrangian = T - V 확인.
+reference/chapter1/simple-harmonic.scm:42 참조.
+질문: 왜 Lagrangian이 무한히 많은가? → 1.5절 gauge transformation"
+#+end_example
+
+** 6. Communication Style
+
+- **전문 용어 자유롭게 사용**: 사용자는 함수형 프로그래밍, 수학 배경 있음
+- **산문체 설명**: 글머리 기호보다 연결된 설명 선호
+- **기하학적 직관 우선**: 수식 전에 "궤도가 어떻게 움직이는가"
+- **철학적 맥락 제공**: 필요시 심우십도 단계, 자연철학 연결
+
+* 실전 예시
+
+** 시나리오 1: 새 챕터 시작
+
+#+begin_example
+[사용자: "Chapter 2 시작하자"]
+
+에이전트:
+1. bd create "Chapter 2: Rigid Bodies" -t feature -p 2 --json
+2. sicm/book/chapter002.org 읽기
+3. 제시:
+   "Chapter 2는 강체 역학을 다룹니다. 핵심 주제:
+   1) 회전 좌표계와 관성 텐서
+   2) 오일러 각과 특이점
+   3) 자유 강체 운동 (Tennis racket theorem)
+   4) 강제 회전 (중력 토크)
+   5) Poinsot's construction
+
+   어디서 시작할까요?"
+
+[사용자: "2번 오일러 각 궁금해"]
+
+에이전트:
+4. bd create "2.x 오일러 각과 특이점 이해" -t task --deps blocks:<ch2-id> --json
+5. bd update <새이슈id> --status in_progress --json
+6. 개념 설명 시작...
+#+end_example
+
+** 시나리오 2: Exercise 막힘
+
+#+begin_example
+[사용자: "Exercise 1.15 모르겠어"]
+
+에이전트:
+1. book/chapter001.org에서 Exercise 1.15 찾기
+2. reference/chapter1/ 에서 관련 풀이 확인 (스포 방지)
+3. 힌트만 제공: "Lagrangian의 대칭성을 보세요.
+   시간에 의존하지 않으면...?"
+4. bd create "Exercise 1.15 - Noether's theorem 연결" -t task
+5. [사용자가 풀면] bd close <id> --reason "자력 해결"
+   [막히면] 추가 힌트 또는 foundations/ 선수 지식 제안
+#+end_example
+
+** 시나리오 3: 배경 지식 부족 발견
+
+#+begin_example
+[세션 중 "symplectic geometry" 언급]
+
+에이전트:
+1. 사용자 반응 확인: "symplectic 낯선가요?"
+2. [네] → bd create "기초: Symplectic Geometry" -t task -p 3
+           --notes "FDG 책 또는 Arnold 참조. foundations/differential-geometry/ 정리"
+3. [아니요] → 계속 진행
+#+end_example
+
+* bd 명령어 치트시트
+
+#+begin_src bash
+# 세션 시작
+bd ready --json
+
+# 챕터 milestone 생성
+bd create "Chapter N: Title" -t feature -p 2 --json
+
+# 개념 학습 task
+bd create "N.x 개념명" -t task -p 1 --deps blocks:<parent> --json
+
+# 작업 시작/완료
+bd update <id> --status in_progress --json
+bd update <id> --notes "학습 노트 추가" --json
+bd close <id> --reason "이해 완료" --json
+
+# 새 이슈 발견
+bd create "제목" -t task --deps discovered-from:<current-id> --json
+
+# 세션 종료
+bd sync
+#+end_src
+
+* TODO 다음 단계
+
+- [ ] AGENTS.md에 이 framework 참조 추가
+- [ ] Emmy 코드 예시 템플릿 준비 (~examples/~ 디렉토리?)
+- [ ] Chapter 1 전체를 이 방식으로 한 번 순회해보기
+- [ ] bd 이슈 템플릿 정교화 (학습 vs exercise vs 배경지식)
+
+* 참고
+
+- 원본: [[https://fritzgrabo.com/posts/how-i-talk-to-books-and-source-code/][Fritz Grabo - How I Talk to Books and Source Code]]
+- 우리 철학: ~VISION.org~, ~AGENTS.md~
