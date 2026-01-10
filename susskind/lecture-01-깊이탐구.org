@@ -1,0 +1,366 @@
+#+TITLE: Lecture 1: The Nature of Classical Physics - 깊이 탐구
+#+DATE: [2026-01-10 Fri]
+#+FILETAGS: :susskind:classical_mechanics:탐구:
+#+STARTUP: showall
+
+* 사용 안내
+
+이 파일은 서스킨드의 Lecture 1을 **한 문단씩 깊이 탐구**하기 위한 공간입니다.
+
+** 구조
+- 📖 *원문 (READ ONLY)*: const 변수처럼, 절대 수정하지 않는 원본
+- 🇰🇷 *번역 및 용어 탐구*: 한글 번역 + 용어 카드 + 개념 연결
+- 📝 *나의 탐구 공간*: org-remark, footnote, sidenote로 확장하는 사고의 기록
+
+** 사용법
+1. 원문 읽기
+2. 번역과 용어 확인
+3. "나의 탐구 공간"에 생각, 질문, 연결고리 기록
+4. 다음 문단으로 진행
+
+---
+
+* Lecture 1: The Nature of Classical Physics
+
+** 도입 (Opening)
+
+*** 📖 원문 (READ ONLY)
+:PROPERTIES:
+:CUSTOM_ID: para-opening
+:END:
+
+#+begin_quote
+Somewhere in Steinbeck country two tired men sit down at the side of the road. Lenny combs his beard with his fingers and says, "Tell me about the laws of physics, George." George looks down for a moment, then peers at Lenny over the tops of his glasses. "Okay, Lenny, but just the minimum."
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+스타인벡의 나라 어딘가에서[fn:1] 지친 두 남자가 길가에 앉았다. 레니가 손가락으로 수염을 빗으며 말한다. "물리학 법칙에 대해 말해줘, 조지." 조지는 잠시 아래를 내려다보다가, 안경 너머로 레니를 바라본다. "알았어, 레니. 하지만 최소한만(just the minimum)."
+
+**** 용어 카드
+- **Steinbeck country**: 존 스타인벡(John Steinbeck)의 소설 《생쥐와 인간(Of Mice and Men)》 배경
+  - 레니(Lenny)와 조지(George): 주인공들
+  - 비유의 핵심: "복잡한 것을 간단히 설명해달라"는 요청
+- **the minimum**: 최소한, 필수 불가결한 것
+  - → **Theoretical Minimum**: 서스킨드 책 시리즈 제목의 기원
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+서스킨드의 유머! 스타인벡 소설 레퍼런스로 시작.
+"just the minimum" = Theoretical Minimum의 철학
+→ 백과사전이 아니라, "다음 단계로 가기 위해 필요한 최소한"
+
+이게 Landau의 TM과 다른 점:
+- Landau TM = 란다우가 아는 모든 것 (불가능)
+- Susskind TM = 다음 레벨로 가기 위한 핵심만
+#+end_sidenote
+
+[fn:1] 미국 캘리포니아 살리나스 밸리(Salinas Valley), 스타인벡의 고향이자 많은 작품의 배경
+
+---
+
+** 1. WHAT IS CLASSICAL PHYSICS?
+
+*** 📖 원문 (READ ONLY) - 문단 1.1
+:PROPERTIES:
+:CUSTOM_ID: para-1-1
+:END:
+
+#+begin_quote
+The term /classical physics/ refers to physics before the advent of quantum mechanics. Classical physics includes Newton's equations for the motion of particles, the Maxwell-Faraday theory of electromagnetic fields, and Einstein's general theory of relativity. But it is more than just specific theories of specific phenomena; it is a set of principles and rules---an underlying logic---that governs all phenomena for which quantum uncertainty is not important. Those general rules are called /classical mechanics/.
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+**/classical physics/** (고전물리학) 이라는 용어는 **양자역학의 출현(advent) 이전**의 물리학을 가리킨다. 고전물리학에는 입자의 운동을 다루는 **뉴턴 방정식**, **전자기장**의 **맥스웰-패러데이 이론**, 아인슈타인의 **일반상대성이론**이 포함된다.
+
+하지만 이것은 **특정 현상에 대한 특정 이론들의 모음** 그 이상이다. 고전물리학은 **원리와 규칙들의 체계**---즉 **양자 불확실성(quantum uncertainty)이 중요하지 않은** 모든 현상을 지배하는 **근본 논리(underlying logic)**다.
+
+이러한 일반 규칙들을 **/classical mechanics/** (고전역학) 이라고 부른다.
+
+**** 용어 카드
+- **advent** [ˈædvent]: 출현, 도래
+- **underlying logic**: 근본 논리, 밑바탕 논리
+  - underlying = 아래 깔려 있는 (under + lying)
+  - 표면적 이론들 아래에 깔린 "메타 원리"
+- **quantum uncertainty**: 양자 불확실성
+  - 하이젠베르크 불확정성 원리 (ΔxΔp ≥ ℏ/2)
+  - 고전역학의 경계: ℏ → 0 극한
+
+**** 개념 연결
+| 이론               | 대상                  | 시대       |
+|--------------------|-----------------------|------------|
+| 뉴턴 역학          | 입자 운동             | 17-19세기  |
+| 맥스웰-패러데이    | 전자기장              | 19세기     |
+| 일반상대성이론     | 중력, 시공간 기하학   | 20세기 초  |
+| ─────────────────  | ─────────────────     | ────────── |
+| **고전역학**       | **위 모든 것의 원리** | 메타 수준  |
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+핵심: "classical mechanics ≠ 특정 이론들의 합"
+→ "principles & rules = underlying logic"
+
+이게 라그랑주 접근의 핵심!
+- 뉴턴: F = ma (힘의 방정식)
+- 라그랑주: 최소 작용 원리 (메타 원리)
+
+서스킨드는 1강에서 "underlying logic"를 먼저 보여주고,
+나중에 그게 라그랑주/해밀턴 형식임을 드러낸다.
+
+양자 불확실성이 중요하지 않은 = ℏ가 0으로 가는 극한
+→ 거시 세계에서는 여전히 고전역학이 왕!
+#+end_sidenote
+
+---
+
+*** 📖 원문 (READ ONLY) - 문단 1.2: Laplace의 결정론
+:PROPERTIES:
+:CUSTOM_ID: para-1-2
+:END:
+
+#+begin_quote
+The job of classical mechanics is to predict the future. The great eighteenth-century physicist Pierre-Simon Laplace laid it out in a famous quote:
+
+"We may regard the present state of the universe as the effect of its past and the cause of its future. An intellect which at a certain moment would know all forces that set nature in motion, and all positions of all items of which nature is composed, if this intellect were also vast enough to submit these data to analysis, it would embrace in a single formula the movements of the greatest bodies of the universe and those of the tiniest atom; for such an intellect nothing would be uncertain and the future just like the past would be present before its eyes."
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+고전역학의 임무는 **미래를 예측**하는 것이다. 18세기의 위대한 물리학자 **피에르-시몽 라플라스**는 유명한 인용구에서 이를 명확히 했다:
+
+#+begin_quote
+"우리는 우주의 현재 상태를 **과거의 결과이자 미래의 원인**으로 볼 수 있다. 어떤 지성이 특정 순간에 자연을 움직이게 하는 모든 힘과, 자연을 구성하는 모든 물체의 위치를 안다면, 그리고 이 지성이 이러한 데이터를 분석할 만큼 충분히 광대하다면, 그것은 우주의 가장 거대한 천체의 운동과 가장 작은 원자의 운동을 **단일 공식**으로 포괄할 것이다. 그러한 지성에게는 아무것도 불확실하지 않으며, 미래는 과거와 마찬가지로 그 눈앞에 현존할 것이다."
+#+end_quote
+
+**** 용어 카드
+- **Pierre-Simon Laplace** (1749-1827): 프랑스 수학자, 천문학자
+  - "라플라스의 악마(Laplace's demon)": 완전한 결정론적 우주관
+- **deterministic**: 결정론적
+  - 초기 조건이 주어지면 미래가 완전히 결정됨
+  - ↔ stochastic (확률적)
+
+**** 개념 연결
+```
+초기 조건 (t=0)
+    ↓
+동역학 법칙 (F=ma, 라그랑주 방정식 등)
+    ↓
+미래 상태 (t>0) ← 완전히 결정됨
+```
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+라플라스의 악마 = 궁극의 계산 기계
+
+"단일 공식으로 포괄" = 서스킨드가 말하는 underlying logic!
+→ 뉴턴 방정식이든, 라그랑주든, 모두 이 철학의 구현
+
+하지만:
+- 양자역학 → 라플라스 악마 불가능 (불확정성 원리)
+- 카오스 이론 → 실질적 예측 불가능 (초기 조건 민감성)
+
+고전역학의 이상(ideal)과 현실(reality)의 간극
+→ 그럼에도 이 "이상"을 먼저 이해해야 다음 단계로!
+#+end_sidenote
+
+---
+
+** 2. SIMPLE DYNAMICAL SYSTEMS AND THE SPACE OF STATES
+
+*** 📖 원문 (READ ONLY) - 문단 2.1: System과 State-Space
+:PROPERTIES:
+:CUSTOM_ID: para-2-1
+:END:
+
+#+begin_quote
+A collection of objects---particles, fields, waves, or whatever---is called a /system/. A system that is either the entire universe or is so isolated from everything else that it behaves as if nothing else exists is a /closed/ system.
+
+To get an idea of what deterministic and reversible mean, we are going to begin with some extremely simple closed systems. They are much simpler than the things we usually study in physics, but they satisfy rules that are rudimentary versions of the laws of classical mechanics. We begin with an example that is so simple it is trivial. Imagine an abstract object that has only one state. We could think of it as a coin glued to the table---forever showing heads. In physics jargon, the collection of all states occupied by a system is its space of states, or, more simply, its /state-space/. The state-space is not ordinary space; it's a mathematical set whose elements label the possible states of the system.
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+대상들의 집합---입자, 장, 파동, 또는 무엇이든---을 **/system/** (계) 라고 부른다. 전체 우주이거나, 다른 모든 것으로부터 너무나 고립되어 마치 다른 것이 존재하지 않는 것처럼 행동하는 계를 **/closed system/** (닫힌계) 이라고 한다.
+
+결정론적(deterministic)이고 가역적(reversible)이라는 것이 무엇을 의미하는지 알기 위해, 우리는 극도로 단순한 닫힌계들로 시작할 것이다. 이것들은 우리가 보통 물리학에서 연구하는 것들보다 훨씬 단순하지만, 고전역학 법칙의 **초보적 버전(rudimentary versions)**에 해당하는 규칙들을 만족한다.
+
+가장 단순한, 심지어 자명한(trivial) 예로 시작하자. **단 하나의 상태**만 갖는 추상적 대상을 상상해보라. 이것은 테이블에 붙어서 영원히 앞면만 보이는 동전으로 생각할 수 있다.
+
+물리학 전문용어로, 계가 차지하는 모든 상태의 집합을 **space of states** 또는 간단히 **/state-space/** (상태공간) 라고 한다. **상태공간은 일반적인 공간이 아니다**; 그것은 계의 가능한 상태들을 라벨링하는 원소들을 가진 **수학적 집합**이다.
+
+**** 용어 카드
+- **system** (계): 연구 대상이 되는 물체들의 집합
+  - closed system (닫힌계): 외부와 상호작용 없음
+  - open system (열린계): 외부와 에너지/물질 교환
+- **state-space** (상태공간): 모든 가능한 상태의 집합
+  - ≠ physical space (물리적 공간)
+  - = abstract mathematical space (추상 수학 공간)
+- **rudimentary** [ˌruːdɪˈmentəri]: 초보적인, 기초적인
+  - rudiment = 초보, 기초 (라틴어 rudis = 조잡한)
+- **trivial**: 자명한, 당연한 (↔ non-trivial)
+
+**** 개념 연결: State-Space의 예
+
+| 계                     | State-Space          | 차원 |
+|------------------------|----------------------|------|
+| 테이블에 붙은 동전     | 점 1개 (H)           | 0    |
+| 자유 동전              | 점 2개 (H, T)        | 0    |
+| 1차원 입자             | ℝ (위치 x)           | 1    |
+| 1차원 입자 (위치+속도) | ℝ² (x, v)            | 2    |
+| N개 입자 3차원 공간    | ℝ^(6N) (위치+운동량) | 6N   |
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+**핵심 통찰**: State-Space ≠ Physical Space!
+
+예:
+- 물리 공간: 내 방 (3차원)
+- 상태 공간: 방 안 공기 분자 N개 → 6N 차원!
+
+서스킨드 전략:
+1. 가장 단순한 계 (1상태, 2상태)로 시작
+2. "underlying logic" (결정론, 가역성) 보여주기
+3. → 무한 상태로 확장
+4. → 연속 공간 (진짜 물리학)
+
+이게 SICM과 다른 점:
+- SICM: Configuration Space부터 시작 (바로 연속)
+- 서스킨드: 불연속 → 연속 (교육적!)
+
+"rudimentary versions of classical mechanics" = 핵심 아이디어!
+→ 간단한 예에서도 정보 보존, 결정론, 가역성이 드러남
+#+end_sidenote
+
+---
+
+*** 📖 원문 (READ ONLY) - 문단 2.5: Stroboscopic World
+:PROPERTIES:
+:CUSTOM_ID: para-2-5
+:END:
+
+#+begin_quote
+In classical mechanics we assume that systems evolve smoothly, without any jumps or interruptions. Such behavior is said to be /continuous/. Obviously you cannot move between Heads and Tails smoothly. Moving, in this case, necessarily occurs in discrete jumps. So let's assume that time comes in discrete steps labeled by integers. A world whose evolution is discrete could be called /stroboscopic/.
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+고전역학에서 우리는 계가 어떤 도약이나 중단 없이 **매끄럽게(smoothly) 진화**한다고 가정한다. 이러한 거동을 **/continuous/** (연속적) 이라고 한다.
+
+명백히, 동전의 앞면(Heads)과 뒷면(Tails) 사이를 매끄럽게 움직일 수는 없다. 이 경우, 움직임은 필연적으로 **불연속 도약(discrete jumps)**으로 일어난다.
+
+그러므로 **시간이 정수로 표시되는 불연속 단계**로 온다고 가정하자. 진화가 불연속인 세계는 **/stroboscopic/** 이라고 부를 수 있을 것이다.
+
+**** 용어 카드
+- **continuous** [kənˈtɪnjuəs]: 연속적인
+  - 미적분학의 기초 개념
+  - 함수 f(x)가 continuous ↔ 그래프를 끊지 않고 그릴 수 있음
+- **discrete** [dɪˈskriːt]: 불연속적인, 이산적인
+  - ↔ continuous
+  - 정수, 이산 확률 분포 등
+- **stroboscopic** [ˌstrɒbəˈskɒpɪk]: 스트로보 조명 같은
+  - **어원**: strobo (그리스어: 빙빙 돌다) + scope (보다)
+  - **Stroboscope** (스트로보스코프): 섬광등
+    - 빠르게 깜빡이는 빛으로 운동하는 물체 관찰
+    - 연속 운동 → 불연속 프레임들로 보임
+
+**** 물리적 비유: Stroboscope
+
+#+begin_example
+[회전하는 선풍기]
+일반 조명: 날개가 흐릿하게 보임 (연속 운동)
+스트로보: 날개가 몇 개 위치에만 멈춰 보임 (불연속 프레임)
+
+[물리학 비유]
+양자역학: 에너지 준위 E₁, E₂, E₃... (불연속)
+        = 연속처럼 보이는 세계를 "스트로보"로 본 것
+
+서스킨드의 전략:
+불연속 세계 (H/T, 주사위) → 스트로보 비유
+                           ↓
+나중에 연속 극한 (N → ∞, Δt → 0)
+#+end_example
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+**"스트로보" 비유의 깊이**
+
+1. 교육적 전략:
+   - 불연속이 더 직관적 (H/T, 주사위)
+   - 연속은 극한 개념 필요 (미적분)
+   - 서스킨드: 쉬운 것 → 어려운 것
+
+2. 물리학적 통찰:
+   - 양자역학 = 본질적으로 불연속
+   - 고전역학 = 극한에서 연속처럼 보임
+   - "stroboscopic world" = 양자 세계의 은유!
+
+3. 수학적 연결:
+   - 불연속: 차분 방정식 (difference equation)
+     σ(n+1) = -σ(n)
+   - 연속: 미분 방정식 (differential equation)
+     dx/dt = f(x)
+
+"discrete steps labeled by integers" = 시간의 이산화
+→ 나중에 Δt → 0 극한으로 연속 시간 복원
+→ 이게 오일러 방법(Euler method)의 철학!
+#+end_sidenote
+
+---
+
+** 3. RULES THAT ARE NOT ALLOWED: THE MINUS-FIRST LAW
+
+*** 📖 원문 (READ ONLY) - 문단 3.1
+:PROPERTIES:
+:CUSTOM_ID: para-3-1
+:END:
+
+#+begin_quote
+According to the rules of classical physics, not all laws are legal. It's not enough for a dynamical law to be deterministic; it must also be reversible.
+#+end_quote
+
+*** 🇰🇷 번역 및 용어 탐구
+
+고전물리학의 규칙에 따르면, **모든 법칙이 합법적인 것은 아니다**. 동역학 법칙이 결정론적(deterministic)인 것만으로는 충분하지 않다; 그것은 또한 **가역적(reversible)**이어야 한다.
+
+**** 용어 카드
+- **reversible** [rɪˈvɜːrsəbl]: 가역적인
+  - 시간을 거꾸로 돌려도 법칙이 성립
+  - ↔ irreversible (비가역적, 열역학 제2법칙)
+
+*** 📝 나의 탐구 공간
+
+#+begin_sidenote
+**Deterministic ≠ Reversible**
+
+예:
+- 결정론적이지만 비가역적: Figure 9 (2에 두 화살표 들어옴)
+- 둘 다 만족: Figure 3 (H ↔ T)
+
+왜 가역성이 필요한가?
+→ 정보 보존 (Conservation of Information)
+→ 서스킨드가 "Minus-First Law"라고 부르는 이유!
+#+end_sidenote
+
+---
+
+** [계속 작성 중...]
+
+이후 섹션:
+- 3.2: Conservation of Information
+- 3.3: One Arrow In, One Arrow Out
+- 4: Dynamical Systems with Infinite States
+- 5: The Principle of Least Action
+
+---
+
+* 작업 로그
+
+** 2026-01-10
+- 파일 생성, 첫 6개 문단 작업 완료
+- 다음: 문단 3.2부터 계속 (정보 보존 법칙)
