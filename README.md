@@ -1,4 +1,4 @@
-# SICM Study - Internalization of Flexible Design
+# SICM Study - A Journey Toward Understanding
 
 [![한국어](https://img.shields.io/badge/lang-한국어-blue)](README-KO.md)
 
@@ -8,14 +8,7 @@
 > "Rather than explaining through analogy, we build up mathematical content from the beginning, step by step, to reach our conclusions."
 > — Roger Penrose, *The Road to Reality*
 
-> "Implementation is no longer the problem. Orchestration is possible too. What remains is **the internalization of flexible design**."
-> — Personal reflection on the age of AI agents
-
-## Why This Repository?
-
-In the age of AI agents, **implementation itself is no longer the bottleneck**. Agents can write code, orchestrate complex workflows, and even reason about systems. But there's something they cannot simply download: **the deep intuition for flexible design**.
-
-This repository is a learning space for **internalizing the design principles** that make software adaptable, extensible, and resilient to change. It traces the intellectual lineage from computational thinking through physics to the art of building systems that can evolve.
+This repository is a learning space for the **path to understanding** that leads from *computational thinking* to *classical mechanics*, *differential geometry*, and ultimately to *natural philosophy*.
 
 The name is *sicm-study*, but SICM is just the starting point.
 For ultimate goals and philosophical background, see [VISION.md](VISION.md).
@@ -23,61 +16,30 @@ For ultimate goals and philosophical background, see [VISION.md](VISION.md).
 ## Intellectual Lineage
 
 ```
-                        ┌─────────────────────────────────────┐
-                        │         SUSSMAN'S UNIVERSE          │
-                        └─────────────────────────────────────┘
-
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │  COMPUTATIONAL THINKING                 FLEXIBLE DESIGN                 │
-  │                                                                         │
-  │  SICP (1985)                            SDF (2021)                      │
-  │  Structure and Interpretation           Software Design for Flexibility │
-  │  of Computer Programs                   "Additive Programming"          │
-  │  "Programs = Mathematical Expressions"  "Systems that evolve"           │
-  │       │                                      │                          │
-  └───────┼──────────────────────────────────────┼──────────────────────────┘
-          │                                      │
-          ▼                                      ▼
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │  PHYSICS AS CODE                                                        │
-  │                                                                         │
-  │  SICM (2001)                 FDG (2013)                                 │
-  │  Classical Mechanics         Differential Geometry                      │
-  │  Lagrangian/Hamiltonian      The path to General Relativity            │
-  │  "Formulas = Code"           "Geometry = Computation"                   │
-  │       │                           │                                     │
-  │       └───────────┬───────────────┘                                     │
-  │                   ▼                                                     │
-  │  Emmy (2020~)     Clojure reimplementation                              │
-  │                   Browser + Visualization + Modern ecosystem            │
-  └─────────────────────────────────────────────────────────────────────────┘
-
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │  PHYSICS FOUNDATIONS                                                    │
-  │                                                                         │
-  │  Susskind's Theoretical Minimum                                         │
-  │  Classical Mechanics → Quantum → GR                                     │
-  │  "Just what you need to proceed to the next level"                      │
-  └─────────────────────────────────────────────────────────────────────────┘
+  SICP (1985)                    Foundations of Computational Thinking
+  Structure and Interpretation   Scheme language
+  of Computer Programs           "Programs = Mathematical Expressions"
+       │
+       ▼
+  SICM (2001)                    Classical Mechanics + Functional Notation
+  Structure and Interpretation   scmutils library
+  of Classical Mechanics         "Formulas = Code"
+       │
+       ▼
+  FDG (2013)                     Differential Geometry
+  Functional Differential        The path to General Relativity
+  Geometry
+       │
+       ▼
+  Emmy (2020~)                   Clojure reimplementation
+  Computer Algebra System        ClojureScript (runs in browser!)
+                                 Clerk notebooks (visualization!)
+                                 "Overcoming Scheme's limitations"
 ```
 
 ### Why This Lineage?
 
 The "constructionist learning" that started with Seymour Papert's Logo extends through Gerald Sussman to the core of physics. The idea that *formulas and code are identical* as mathematical tools — this is the foundation of *Universal Science*.
-
-**SDF** adds a crucial dimension: how to build systems that can **evolve** without being rewritten. In the age of AI agents, this is not just good practice—it's the **differentiator** between systems that thrive and systems that become legacy.
-
-### The Core Insight: Additive Programming
-
-From SDF's central thesis:
-
-> **Additive programming** is a strategy for building large systems that can be easily adapted to new situations by adding new code rather than modifying existing, working code.
-
-Key techniques:
-- **Generic Procedures**: Dynamic dispatch for extensibility
-- **Combinators**: Composing behaviors without modification
-- **Propagators**: Decentralized computation models
-- **Separation of Generators and Testers**: Independent evolution
 
 ### From Scheme to Clojure
 
@@ -92,77 +54,51 @@ Key techniques:
 
 ```
 sicm-study/
-├── sicp/                    # Computational Thinking
-│   ├── book/                # sicp.org (complete book, Babel executable)
-│   └── info/                # Emacs info version
-│
-├── sicm/                    # Classical Mechanics (Sussman & Wisdom)
-│   ├── book/                # 9 chapters (org-mode)
-│   └── my-solutions/        # Personal solutions
-│
-├── fdg/                     # Functional Differential Geometry
-│   └── book/                # Scheme/Clojure implementations
-│
-├── sdf/                     # Software Design for Flexibility (NEW)
-│   ├── book/                # Full book (org-mode, gitignored)
-│   └── README.md            # Core concepts summary
-│
-├── susskind/                # Theoretical Minimum Series
-│   ├── book/                # Classical Mechanics (org-mode, gitignored)
-│   └── lecture-*-깊이탐구.org  # Deep study notes (Korean)
-│
-├── foundations/             # Mathematical Foundations
+├── sicp/                # Stage 1: Computational Thinking
+│   ├── book/            # sicp.org (complete book, Babel executable)
+│   └── info/            # Emacs info version
+├── sicm/                # Stage 2: Classical Mechanics
+│   ├── book/            # 9 chapters (org-mode)
+│   ├── reference/       # Sam Ritchie's Scheme solutions
+│   └── my-solutions/    # My solutions
+├── fdg/                 # Stage 3: Differential Geometry
+│   └── book/            # PDF + Scheme/Clojure code
+├── foundations/         # Mathematical Physics Foundations (to be filled)
 │   ├── calculus/
 │   ├── linear-algebra/
 │   ├── differential-geometry/
 │   └── variational-principles/
-│
-├── tools/                   # Development environment
-│   └── scheme/              # MIT Scheme setup
-│
-├── README.md                # This file
-├── VISION.md                # Philosophical background
-├── CREDITS.md               # Original author acknowledgments
-└── AGENTS.md                # AI agent instructions
+├── tools/
+│   ├── emmy/            # Emmy full project (4200+ tests)
+│   └── scheme/          # MIT Scheme setup
+├── essays/              # Road to Reality (Sam Ritchie essays)
+├── README.md            # This file
+├── CREDITS.md           # Original author acknowledgments
+└── .claude/commands/    # Learning assistant agents
 ```
-
-**Note**: `book/` folders contain org-mode conversions of original texts. They are gitignored to respect copyright. The focus is on **study notes and personal understanding**, not redistribution.
 
 ## Learning Roadmap
 
-### Track A: Physics as Code (SICM Path)
-
-**Phase 0: Foundations**
+### Phase 0: SICP Foundations (Optional)
 - [ ] SICP Chapter 1-2: Procedures, Data Abstraction
-- [ ] Susskind Lecture 1-3: Nature of Classical Physics, Motion, Dynamics
+- [ ] Scheme/Emacs environment setup
+- [ ] Practice running code with Babel
 
-**Phase 1: Classical Mechanics**
-- [ ] SICM Chapter 1: Lagrangian Mechanics
-- [ ] SICM Chapter 3: Hamiltonian Mechanics
-- [ ] Susskind Lectures 4-11: Energy, Least Action, Symmetries
+### Phase 1: SICM Preparation
+- [ ] Calculus of Variations basics
+- [ ] Understanding Lagrangian mechanics concepts
+- [ ] Emmy installation and REPL usage
 
-**Phase 2: Geometry**
-- [ ] FDG: Differential geometry basics
-- [ ] Path to General Relativity
+### Phase 2: SICM Core Study
+- [ ] Chapter 1: Lagrangian Mechanics
+- [ ] Chapter 2: Rigid Bodies
+- [ ] Chapter 3: Hamiltonian Mechanics
+- [ ] Chapters 4-9: Advanced topics
 
-### Track B: Flexible Design (SDF Path)
-
-**Phase 0: Design Principles**
-- [ ] SDF Chapter 1: Flexibility in Programs
-- [ ] SDF Chapter 2: Domain-Specific Languages
-
-**Phase 1: Core Techniques**
-- [ ] SDF Chapter 3: Variations on a Scheme
-- [ ] SDF Chapter 4: Pattern Matching
-- [ ] SDF Chapter 5: Evaluation
-
-**Phase 2: Advanced Patterns**
-- [ ] SDF Chapter 6: Layering
-- [ ] SDF Chapter 7: Propagation
-
-### Convergence: The Art of Extensible Systems
-
-Both tracks lead to the same insight: **well-designed systems are those that can evolve**. Physics teaches us to find invariants; SDF teaches us to build around them.
+### Phase 3: Extending to FDG
+- [ ] Differential geometry basics
+- [ ] Differential Forms
+- [ ] FDG book study
 
 ## Tools
 
@@ -190,14 +126,13 @@ Both tracks lead to the same insight: **well-designed systems are those that can
 ## References
 
 ### Books
-- [SICP](https://sarabander.github.io/sicp/) - Structure and Interpretation of Computer Programs
-- [SICM](https://tgvaughan.github.io/sicm/) - Structure and Interpretation of Classical Mechanics
-- [SDF](https://mitpress.mit.edu/9780262045490/) - Software Design for Flexibility (MIT Press, 2021)
-- [The Theoretical Minimum](https://theoreticalminimum.com/) - Susskind's lecture series
+- [SICM 2nd Edition](https://mitpress.mit.edu/sites/default/files/titles/content/sicm_edition_2/book.html) (MIT Press)
+- [SICP HTML5 Version](https://sarabander.github.io/sicp/) (sarabander)
+- [SICM HTML Version](https://tgvaughan.github.io/sicm/) (tgvaughan)
 
 ### Lectures
 - [MIT 6.946](https://groups.csail.mit.edu/mac/users/gjs/6946/) - Classical Mechanics: A Computational Approach
-- [Stanford Continuing Studies](https://theoreticalminimum.com/courses) - Susskind's Physics Courses
+- [MIT 6.001](https://ocw.mit.edu/courses/6-001-structure-and-interpretation-of-computer-programs-spring-2005/) - SICP Lectures
 
 ### Community
 - [Road to Reality](https://roadtoreality.substack.com/) - Sam Ritchie Newsletter

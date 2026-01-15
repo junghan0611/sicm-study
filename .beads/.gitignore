@@ -27,8 +27,3 @@ beads.right.meta.json
 !issues.jsonl
 !metadata.json
 !config.json
-
-# Local runtime files
-.local_version
-last-touched
-daemon-error
