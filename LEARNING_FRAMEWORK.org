@@ -5,7 +5,9 @@
 * Overview
 
 Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
-진행 추적은 ~bd (beads)~ 로 관리.
+진행 추적은 ~br (beads_rust)~ 로 관리.
+
+*Note:* ~br~ 은 git 명령을 실행하지 않습니다. ~br sync --flush-only~ 후 수동으로 ~git add .beads/ && git commit~ 필요합니다.
 
 ** 핵심 구조
 
@@ -13,14 +15,14 @@ Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
 |----------------------------+-------------------------------+-------------------|
 | ~sicm/book/chapter*.org~   | 이론 (SICM 원서)              | ~book.txt~        |
 | ~sicm/reference/~          | 실제 코드 (Sam Ritchie 풀이)  | Fizzy source      |
-| ~.beads/~                  | 진행 추적 (bd 이슈)           | ~outline.org~     |
+| ~.beads/~                  | 진행 추적 (br 이슈)           | ~outline.org~     |
 | ~LEARNING_FRAMEWORK.org~   | 에이전트 지침                 | ~instructions.org~ |
 
 ** Grabo vs sicm-study 차이점
 
 | 측면                | Grabo                           | sicm-study                        |
 |---------------------+---------------------------------+-----------------------------------|
-| 진행 추적           | outline.org (TODO/DONE/SKIP)    | bd issues (status + deps)         |
+| 진행 추적           | outline.org (TODO/DONE/SKIP)    | br issues (status + deps)         |
 | 내용                | Rails 8 (실용적 프레임워크)     | SICM (수리물리학, 철학적 여정)    |
 | 학습 목표           | 프레임워크 마스터               | 자연철학 이해 (심우십도)          |
 | 코드 검증           | 프로덕션 코드 참조              | Scheme 실행 + Emmy REPL           |
@@ -41,7 +43,7 @@ Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
    - ~book/chapter*.org~ 에서 관련 부분 인용
    - ~reference/~ 에서 실제 Scheme 코드 연결
    - 필요시 Emmy 예제 제시
-4. bd 이슈 업데이트 (완료 또는 후속 이슈 생성)
+4. br 이슈 업데이트 (완료 또는 후속 이슈 생성)
 5. 다음 항목 진행 전 확인
 
 ** 2. Code-to-Concept Connection
@@ -66,7 +68,7 @@ Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
 ** 3. Session Startup Workflow
 
 세션 시작 시:
-1. ~bd ready --json~ 으로 작업 가능 이슈 확인
+1. ~br ready --json~ 으로 작업 가능 이슈 확인
 2. 사용자에게 진행 상황 요약 제시
 3. 선택지:
    - 특정 이슈 계속 (#id)
@@ -87,32 +89,38 @@ Fritz Grabo의 "책 + 코드" 대화형 학습 방식을 sicm-study에 적용.
 3. "어떤 걸 먼저 볼까요? (번호 or 'all')"
 4. [사용자: "1"]
 5. 개념 설명 + 코드 연결
-6. bd update <issue-id> --notes "최소작용 원리 완료, reference/chapter1/action.scm 확인"
+6. br comments add <issue-id> "최소작용 원리 완료, reference/chapter1/action.scm 확인"
 7. "다음 항목 (2)로 갈까요?"
 #+end_src
 
-** 5. Progress Tracking with bd
+** 5. Progress Tracking with br
 
 *** 이슈 구조 예시
 
 #+begin_example
-# 챕터 학습 milestone
-bd create "Chapter 1: Lagrangian Mechanics" -t feature -p 2
+# 챕터 학습 에픽 (milestone)
+br create "Chapter 1: Lagrangian Mechanics" -t feature -p 2 --json
+# → 에픽 ID 확인 (예: br-7)
 
-# 세부 개념 tasks
-bd create "1.1 Configuration Spaces 이해" -t task -p 1 --deps blocks:<parent-id>
-bd create "Exercise 1.5 풀기" -t task -p 2 --deps blocks:<parent-id>
-bd create "변분법 기초 부족 → foundations/ 정리" -t task -p 3 --deps discovered-from:<ex1-5-id>
+# 세부 개념 tasks (--parent로 에픽에 연결)
+br create "1.1 Configuration Spaces 이해" -t task -p 1 --parent <epic-id> --json
+br create "Exercise 1.5 풀기" -t task -p 2 --parent <epic-id> --json
+
+# 학습 중 발견한 선수 지식 이슈 → dep add로 연결
+br create "변분법 기초 부족 → foundations/ 정리" -t task -p 3 --json
+br dep add <new-id> <ex1-5-id> -t related
 #+end_example
 
 *** 노트 누적 방식
 
-Grabo의 outline.org처럼, bd 이슈에 학습 노트 누적:
+Grabo의 outline.org처럼, br comments로 학습 노트 누적:
 #+begin_example
-bd update <id> --notes "Lagrangian = T - V 확인.
+br comments add <id> "Lagrangian = T - V 확인.
 reference/chapter1/simple-harmonic.scm:42 참조.
 질문: 왜 Lagrangian이 무한히 많은가? → 1.5절 gauge transformation"
 #+end_example
+
+*주의*: ~br update --notes~ 는 기존 노트를 *덮어씁니다*. 누적 기록은 반드시 ~br comments add~ 를 사용하세요.
 
 ** 6. Communication Style
 
@@ -129,7 +137,7 @@ reference/chapter1/simple-harmonic.scm:42 참조.
 [사용자: "Chapter 2 시작하자"]
 
 에이전트:
-1. bd create "Chapter 2: Rigid Bodies" -t feature -p 2 --json
+1. br create "Chapter 2: Rigid Bodies" -t feature -p 2 --json
 2. sicm/book/chapter002.org 읽기
 3. 제시:
    "Chapter 2는 강체 역학을 다룹니다. 핵심 주제:
@@ -144,8 +152,8 @@ reference/chapter1/simple-harmonic.scm:42 참조.
 [사용자: "2번 오일러 각 궁금해"]
 
 에이전트:
-4. bd create "2.x 오일러 각과 특이점 이해" -t task --deps blocks:<ch2-id> --json
-5. bd update <새이슈id> --status in_progress --json
+4. br create "2.x 오일러 각과 특이점 이해" -t task --parent <ch2-id> --json
+5. br update <새이슈id> --status in_progress --json
 6. 개념 설명 시작...
 #+end_example
 
@@ -159,8 +167,8 @@ reference/chapter1/simple-harmonic.scm:42 참조.
 2. reference/chapter1/ 에서 관련 풀이 확인 (스포 방지)
 3. 힌트만 제공: "Lagrangian의 대칭성을 보세요.
    시간에 의존하지 않으면...?"
-4. bd create "Exercise 1.15 - Noether's theorem 연결" -t task
-5. [사용자가 풀면] bd close <id> --reason "자력 해결"
+4. br create "Exercise 1.15 - Noether's theorem 연결" -t task
+5. [사용자가 풀면] br close <id> --reason "자력 해결"
    [막히면] 추가 힌트 또는 foundations/ 선수 지식 제안
 #+end_example
 
@@ -171,33 +179,41 @@ reference/chapter1/simple-harmonic.scm:42 참조.
 
 에이전트:
 1. 사용자 반응 확인: "symplectic 낯선가요?"
-2. [네] → bd create "기초: Symplectic Geometry" -t task -p 3
-           --notes "FDG 책 또는 Arnold 참조. foundations/differential-geometry/ 정리"
+2. [네] → br create "기초: Symplectic Geometry" -t task -p 3 -d "FDG 책 또는 Arnold 참조. foundations/differential-geometry/ 정리"
 3. [아니요] → 계속 진행
 #+end_example
 
-* bd 명령어 치트시트
+* br 명령어 치트시트
 
 #+begin_src bash
 # 세션 시작
-bd ready --json
+br ready --json
 
-# 챕터 milestone 생성
-bd create "Chapter N: Title" -t feature -p 2 --json
+# 챕터 에픽 생성
+br create "Chapter N: Title" -t feature -p 2 --json
+# → 에픽 ID 확인
 
-# 개념 학습 task
-bd create "N.x 개념명" -t task -p 1 --deps blocks:<parent> --json
+# 개념 학습 task (에픽의 자식으로)
+br create "N.x 개념명" -t task -p 1 --parent <epic-id> --json
 
-# 작업 시작/완료
-bd update <id> --status in_progress --json
-bd update <id> --notes "학습 노트 추가" --json
-bd close <id> --reason "이해 완료" --json
+# 작업 시작
+br update <id> --status in_progress --json
+# 또는 한번에: br update <id> --claim --json
 
-# 새 이슈 발견
-bd create "제목" -t task --deps discovered-from:<current-id> --json
+# 학습 노트 누적 (comments는 append, update --notes는 덮어쓰기)
+br comments add <id> "학습 노트 추가"
+
+# 완료
+br close <id> --reason "이해 완료" --json
+
+# 새 이슈 발견 → 생성 후 의존성 추가
+br create "제목" -t task --json
+br dep add <new-id> <current-id> -t related
 
 # 세션 종료
-bd sync
+br sync --flush-only
+git add .beads/
+git commit -m "sync beads"
 #+end_src
 
 * TODO 다음 단계
@@ -205,7 +221,7 @@ bd sync
 - [ ] AGENTS.md에 이 framework 참조 추가
 - [ ] Emmy 코드 예시 템플릿 준비 (~examples/~ 디렉토리?)
 - [ ] Chapter 1 전체를 이 방식으로 한 번 순회해보기
-- [ ] bd 이슈 템플릿 정교화 (학습 vs exercise vs 배경지식)
+- [ ] br 이슈 템플릿 정교화 (학습 vs exercise vs 배경지식)
 
 * 참고
 

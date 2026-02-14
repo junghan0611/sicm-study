@@ -1,34 +1,38 @@
 # CLAUDE.md - SICM Study 에이전트 지침
 
-## 이슈 트래킹: bd (beads)
+## 이슈 트래킹: br (beads_rust)
 
-**중요**: 이 프로젝트는 **bd (beads)** 로 모든 이슈를 관리합니다.
+**중요**: 이 프로젝트는 **br (beads_rust)** 로 모든 이슈를 관리합니다.
 마크다운 TODO 리스트나 다른 트래킹 방법을 사용하지 마세요.
+
+**Note:** `br`은 git 명령을 실행하지 않습니다. `br sync --flush-only` 후 수동으로 `git add .beads/ && git commit` 필요합니다.
 
 ### 필수 명령어
 
 ```bash
 # 작업 찾기
-bd ready --json              # 블로커 없는 작업 가능 이슈
+br ready --json              # 블로커 없는 작업 가능 이슈
 
 # 이슈 생성
-bd create "제목" -t bug|feature|task -p 0-4 --json
+br create "제목" -t bug|feature|task -p 0-4 --json
 
 # 작업 시작/완료
-bd update <id> --status in_progress --json
-bd close <id> --reason "완료" --json
+br update <id> --status in_progress --json
+br close <id> --reason "완료" --json
 
 # 동기화
-bd sync                      # 세션 종료 시 필수
+br sync --flush-only         # 세션 종료 시 필수
+git add .beads/
+git commit -m "sync beads"
 ```
 
 ### 워크플로우
 
-1. `bd ready` 로 작업 가능한 이슈 확인
-2. `bd update <id> --status in_progress` 로 작업 시작
+1. `br ready` 로 작업 가능한 이슈 확인
+2. `br update <id> --status in_progress` 로 작업 시작
 3. 코드 구현, 테스트
-4. 새 이슈 발견 시: `bd create "제목" --deps discovered-from:<parent-id>`
-5. `bd close <id>` 로 완료
+4. 새 이슈 발견 시: `br create "제목" -t task` → `br dep add <새ID> <현재ID> -t related`
+5. `br close <id>` 로 완료
 6. `.beads/` 파일과 코드 변경사항 함께 커밋
 
 ---
@@ -154,7 +158,7 @@ sicm-study/
 1. 사용자가 챕터/주제 요청 시 → 3-7개 핵심 개념으로 분해
 2. 선택 요청 (번호, "all", "skip")
 3. 선택된 항목만: 개념 설명 → 책 인용 → 코드 연결 → Emmy 예제
-4. `bd update` 로 진행 기록
+4. `br comments add <id> "학습 노트"` 로 진행 기록
 5. 다음 항목 진행 전 확인
 
 ### 🔗 Code-to-Concept Connection
@@ -178,18 +182,21 @@ sicm-study/
 
 ```bash
 # 1. 세션 시작
-bd ready --json              # 작업 가능 이슈 확인
+br ready --json              # 작업 가능 이슈 확인
 
 # 2. 학습 중
-bd update <id> --status in_progress
-bd update <id> --notes "학습 노트 누적"
+br update <id> --status in_progress
+br comments add <id> "학습 노트 누적"
 
 # 3. 새 이슈 발견 (배경 지식 부족 등)
-bd create "제목" -t task --deps discovered-from:<current-id>
+br create "제목" -t task --json
+br dep add <new-id> <current-id> -t related
 
 # 4. 세션 종료
-bd close <id> --reason "완료"
-bd sync
+br close <id> --reason "완료"
+br sync --flush-only
+git add .beads/
+git commit -m "sync beads"
 ```
 
 ### 🗣️ 커뮤니케이션 스타일

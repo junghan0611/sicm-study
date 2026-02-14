@@ -24,9 +24,9 @@ Thumbs.db
 
 emmy
 .agent-shell/
-reference
 .claude/settings.local.json
 
 sdf/book
 susskind/book
 
+*.epub
