@@ -32,78 +32,42 @@ SICM이라는 이름이지만, SICM은 출발점일 뿐. 궁극적 목표는:
 
 ```
 sicm-study/
-├── VISION.org           # 철학적 배경 상세
-├── README.org           # 학습 가이드
-├── CREDITS.org          # 원저자 감사
-├── sicp/                # 1단계: 계산적 사고
-│   ├── book/sicp.org    # 전체 책 (Babel 실행 가능)
-│   └── info/            # Emacs info 버전
-├── sicm/                # 2단계: 고전역학
-│   ├── book/            # 9개 챕터 (org-mode)
-│   ├── reference/       # Sam Ritchie의 Scheme 풀이
-│   └── my-solutions/    # 사용자 풀이
-├── fdg/                 # 3단계: 미분기하학
-│   └── book/            # PDF + Scheme/Clojure 코드
-├── foundations/         # 수리물리학 기초 (채워나갈 공간)
-│   ├── calculus/
-│   ├── linear-algebra/
-│   ├── differential-geometry/
-│   └── variational-principles/
-├── essays/              # Road to Reality (Clerk 에세이)
-└── tools/scheme/        # MIT Scheme 설정
+├── AGENTS.md            # 영속 baseline
+├── NEXT.md              # 부트섹터 (다음 세션 첫 행동)
+├── VISION-KO.md         # 철학·심우십도
+├── rtr/                 # 펜로즈 RTR 한/영 목차·용어
+├── susskind/            # 물리의 정석 깊이탐구
+├── sicp/ sicm/ fdg/     # 계산·고전역학·미분기하
+├── foundations/         # 수리물리 기초
+├── essays/              # Clerk 에세이
+└── tools/               # Scheme 등
 ```
 
-## "시작하자" 워크플로우
+## 세션 워크플로우 (NEXT.md)
 
-> 사용자가 **"시작하자"** 라고만 하면 학습 세션이 시작됩니다.
+> 표준 리포 규약: `NEXT.md` = 부트섹터, `AGENTS.md` = 영속 baseline.
+> 사용자가 **"시작하자"** / 학습 재개 시 `NEXT.md` NOW를 먼저 읽는다.
 
-### 에이전트의 역할: 학습 매니저
+### 에이전트 역할
 
-1. **PM.md 확인**: 마지막 세션, 진행 중인 주제, 사용자 수준 파악
-2. **주제 제안**: 이전 맥락 또는 새로운 출발점 제안
-3. **대화로 조율**: 사용자 반응 보며 난이도/방향 조정
-4. **하나의 개념 학습**: One-Item-at-a-Time
-5. **PM.md 업데이트**: 세션 끝에 학습 이력, 다음 추천 기록
+1. **NEXT.md 확인** — stem, next move, read first, do not touch
+2. **대화로 조율** — 챕터 진도가 아니라 당일 전체 그림(나선형 1강)
+3. **깊이 하나** — 전체가 보이는 자리에서 한 줄기만 더 깊게
+4. **세션 끝** — `NEXT.md` NOW/RECENT만 갱신 (next-handoff). PM.md 쓰지 않음
 
-### 시작 시나리오
+### 나선형 1강완성 (2026-08 계약)
 
-```
-[사용자: "시작하자"]
-
-에이전트:
-1. PM.md 읽기 → 현재 상태 파악
-2. 제안:
-   - (첫 세션) "어디서 시작할까요? 몇 가지 입구가 있어요:
-     • SICP - 계산적 사고의 기초
-     • SICM Chapter 1 - 라그랑주 역학 첫걸음
-     • 서스킨드 고전역학 - 물리의정석 스타일
-     뭐가 끌리세요?"
-
-   - (이어서) "지난번에 Configuration Space 봤는데,
-     오늘은 Lagrangian 정의로 갈까요?
-     아니면 다른 거 하고 싶으세요?"
-
-3. 사용자 선택 → 하나의 개념 깊이 탐구
-4. 세션 종료 시 PM.md 업데이트
-```
+- 매 세션 **1·2권(또는 당일 stem 책) 전체 지도**를 다시 그린다
+- 깊이는 앎의틀이 받는 만큼. 앞에서 읽어 올 숙제 없음
+- 한글 대화 + 핵심 용어 한/영 병기 (`rtr/rtr.org` 용어 앵커)
+- 줄줄이 번역·챕터 완주 커리큘럼 강제 금지
+- 완료 기준: "오늘 전체 그림 한 문장"이 남으면 됨
 
 ### 난이도 조율
 
-- **모르겠다고 하면**: 더 기초로, foundations/ 참조
-- **쉽다고 하면**: 심화 또는 연습문제로
-- **엉뚱한 질문**: 환영! 호기심 따라가기
-
-### PM.md 구조
-
-```markdown
-# PM.md - 학습 매니저 상태
-- 마지막 세션: 날짜, 주제
-- 진행 중인 주제: 현재 탐구 중인 개념
-- 다음 세션 추천: 에이전트 제안
-- 학습 이력: 테이블 (날짜/주제/요약/다음연결)
-- 사용자 프로필: 강점, 관심사, 어려운 부분
-- 메모: 세션 간 기억할 것들
-```
+- **모르겠다고 하면**: 더 기초로, foundations/ 또는 전체 지도로 복귀
+- **쉽다고 하면**: 같은 전체 그림에서 한 줄기 심화
+- **엉뚱한 질문**: 환영. 호기심이 stem을 바꾸면 NEXT에 명시
 
 ---
 
@@ -143,24 +107,19 @@ sicm-study/
 
 ### 📋 세션 워크플로우
 
-```bash
+```text
 # 1. 세션 시작
-br ready --json              # 작업 가능 이슈 확인
+NEXT.md NOW 읽기 → stem / next / read first / do not touch
 
 # 2. 학습 중
-br update <id> --status in_progress
-br comments add <id> "학습 노트 누적"
+전체 그림 대화 → 당일 깊이 한 줄기 (원서·목차는 참조만)
 
-# 3. 새 이슈 발견 (배경 지식 부족 등)
-br create "제목" -t task --json
-br dep add <new-id> <current-id> -t related
-
-# 4. 세션 종료
-br close <id> --reason "완료"
-br sync --flush-only
-git add .beads/
-git commit -m "sync beads"
+# 3. 세션 종료
+NEXT.md NOW/RECENT 갱신 (next-handoff)
+commit/push는 GLG 명시 요청 때만
 ```
+
+beads/br 이슈 트래킹은 이 리포에서 쓰지 않는다 (제거됨).
 
 ### 🗣️ 커뮤니케이션 스타일
 

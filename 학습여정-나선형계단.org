@@ -195,9 +195,10 @@
 ** 문서 구조
 #+begin_example
 sicm-study/
-├── VISION.org              # 철학적 배경
-├── PM.md                   # 학습 매니저 상태
+├── VISION-KO.md            # 철학적 배경
+├── NEXT.md                 # 부트섹터 (다음 세션)
 ├── 학습여정-나선형계단.org # 이 문서!
+├── rtr/rtr.org             # 펜로즈 RTR 한/영 목차
 ├── susskind/
 │   ├── lecture-01-깊이탐구.org ✓
 │   ├── lecture-02-깊이탐구.org (다음)
