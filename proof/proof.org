@@ -1,0 +1,64 @@
+#+title: Proof — 형식 증명 선반
+#+filetags: :proof:lean:rocq:logickocli:
+
+* 한 줄
+
+증명보조기는 답을 대신 내는 기계가 아니라, 자연어 주장과 형식적 확실성 사이의
+*책임 경계(provenance harness)* 를 기록하는 층이다. 지금 손대지 않아도 된다.
+자리만 잡아 둔다.
+
+* 관심 좌표 (2026-08-02 담음)
+
+** OpenAI ten-proofs (2026-08-01)
+- 발표: https://openai.com/index/ten-advances-in-mathematics/
+- 리포: https://github.com/openai/ten-proofs
+- 논문 PDF: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
+- 발견 해설(walkthrough): https://cdn.openai.com/pdf/reasoning-walkthroughs.pdf
+
+네 층이 한 아티팩트:
+1. 수학 결과 (논문)
+2. 발견·실패 경로 재구성 (walkthrough)
+3. Lean 4 형식 증명 (mathlib, =sorry_count: 0=)
+4. Comparator + 독립 커널(nanoda) 재검사
+
+경계 (잊지 말 것):
+- 커널 통과 = *그 Lean 문장이 정의·공리에서 따라 나온다*
+- ≠ 그 문장이 인간이 의도한 수학 명제를 정확히 표현한다
+- 검토 상태 현재 =agent-reviewed= — 공동체 숙성 검토는 별개
+
+** 가든·도구
+- 메타: [[denote:20240928T182304][† 증명·설득·귀류·변증·반증·배리]] — Coq 관심의 뿌리
+  https://notes.junghanacs.com/meta/20240928T182304
+- 다리: https://github.com/junghan0611/logickocli
+  한국어 자연어 ↔ 표준 논리 좌표계. 커널은 Lean/Rocq에 맡기고 다리는 여기.
+- Coq → 공식 명칭 *Rocq Prover* (호환층 유지). 문법 재학습이 목표가 아님.
+
+** 책임 경계 상태 라벨 (logickocli 쪽 언어)
+#+begin_example
+[NATURAL]         자연어 논증만
+[FORMALIZED]      형식 정리문으로 옮김
+[ELABORATED]      Lean/Rocq가 타입 수용
+[KERNEL-CHECKED]  커널이 증명 수용
+[CROSS-CHECKED]   독립 검사기 재검사
+[MEANING-REVIEWED] 인간이 원 주장↔형식문 대응 검토
+#+end_example
+
+* 이 리포 안 연결
+
+| 선반 | 만나는 지점 |
+|------|-------------|
+| =geb/= | 괴델·형식체계·자기지시·이상한 고리 — "증명이 무엇인가"의 문화적 척추 |
+| =rtr/= Ch.16 | 무한·튜링·괴델 — 물리 책이 수학 기초를 건드리는 장 |
+| =sicp/= | 보편 평가기·재귀 — Hofstadter 참조가 본문에 이미 있음 |
+| 장회익·서스킨드 | 앎의 틀 / HOW — 형식 확실성과 설득(의미)의 다른 얼굴 |
+
+* 하지 말 것 (지금)
+
+- ten-proofs =lake build= 숙제화
+- Coq/Lean 문법 커리큘럼 착수
+- logickocli Phase 2를 이 리포에서 대신 구현
+- "AI가 수학을 풀었다" 한 줄 요약으로 축소
+
+* 대화 메모 출처
+- 2026-08-02 ChatGPT export (로컬 Downloads, 리포에 원문 넣지 않음)
+  =~/Downloads/힣의 디지털가든 - AI 수학 증명 연구.md=
